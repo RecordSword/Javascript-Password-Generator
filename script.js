@@ -1,78 +1,67 @@
+//variables
+var userChoice = [];
+var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',];
+var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var specialChar = ['!', '#', '$', '%', '&', '(', ')', '*', '+', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '^']
 
-generate.addEventListener('click', writePassword)
+// Prompts for User after they click button
 
-function writePassword() {
-  var passwordLength = Number(prompt("Please enter the number of characters you want for you new password.  It must be more than 8 but less than 128."), "8");
+generateBtn.addEventListener('click', promptMe);
 
-  if (passwordLength < 8 || passwordLength > 128) {
-    alert("Please select valid password length...")
+function promptMe() {
+  //ask the user password length required
+  var passwordLength = prompt("Please choose a length of at least 8 characters and no more than 128 characters")
+  console.log(passwordLength);
+  passwordLength = parseFloat(passwordLength);
+
+    if (passwordLength < 8  || passwordLength > 128) {
+        alert("Your password needs to be at least 8 characters and no more than 128");
+        return
+    } 
+    else {
+        alert ("You have selected " + passwordLength + " characters");
+    }
+
+  console.log(passwordLength);
+  var upperCaseChoice = confirm("Do you wish to use uppercase?");
+  console.log(upperCaseChoice);
+  
+  if (upperCaseChoice) {
+    userChoice = userChoice.concat(upperCase);
+    console.log(userChoice);
+    //console.log(userChoice.length);
   }
-  else {
-    var numbersConfirm = confirm("Do you want numbers in your password?");
-    console.log(numbersConfirm)
-    var lowerCasesConfirm = confirm("Do you want lowercases in your password?");
-    console.log(lowerCasesConfirm)
-    var upperCasesConfirm = confirm("Do you want uppercases in your password?");
-    console.log(upperCasesConfirm)
-    var specialConfirm = confirm("Do you want special characters in your password?");
-    console.log(specialConfirm)
-    document.getElementById('randomPassword')
-    resultEl.value = generatePassword(lowerCasesConfirm, upperCasesConfirm, numbersConfirm, specialConfirm, passwordLength);
-    const password = resultEl.value;
+  var lowerCaseChoice = confirm("Do you wish to use lowercase?");
+  console.log(lowerCaseChoice);
+  if (lowerCaseChoice) {
+    userChoice = userChoice.concat(lowerCase);
+    console.log(userChoice);
+    //console.log(userChoice.length);
 
   }
-}
-console.log(writePassword)
-//DOM elements
-const resultEl = document.getElementById('randomPassword');
-
-
-const randomFunc = {
-  lower: getRandomLower,
-  upper: getRandomUpper,
-  number: getRandomNumber,
-  symbol: getRandomSymbol
-};
-
-function generatePassword(lower, upper, number, symbol, length) {
-  let generatedPassword = "";
-  const typesCount = lower + upper + number + symbol;
-  const typesArr = [{
-    lower
-  }, {
-    upper
-  }, {
-    number
-  }, {
-    symbol
-  }].filter(item => Object.values(item)[0]);
-
-  // create a loop
-  for (let i = 0; i < length; i += typesCount) {
-    typesArr.forEach(type => {
-      const funcName = Object.keys(type)[0];
-      generatedPassword += randomFunc[funcName]();
-    });
+  var numbersChoice = confirm("Do you wish to use numbers?")
+  console.log(numbersChoice);
+  if (numbersChoice) {
+    userChoice = userChoice.concat(numbers);
+    console.log(userChoice);
+    //console.log(userChoice.length);
   }
+  var specialCharactersChoice = confirm("Do you wish to use special character?")
+  console.log(specialCharactersChoice);
+  if (specialCharactersChoice) {
+    userChoice = userChoice.concat(specialChar);
+    console.log(userChoice);
+    console.log(passwordLength);
+  }
+  var charactersArray = [];
+  for (var i = 0; i < passwordLength; i++) {
 
-  const finalPassword = generatedPassword.slice(0, length);
-
-  return finalPassword;
+    var randomCharacter = Math.floor(Math.random() * userChoice.length);
+    charactersArray += userChoice[randomCharacter];
+  }
+  alert("Your new password is " + charactersArray);
 }
 
-// Generator functions
-function getRandomLower() {
-  return rando("qwertyuiopasdfghjklzxcvbnm")
-}
 
-function getRandomUpper() {
-  return rando("QWERTYUIOPASDFGHJKLZXCVBNM");
-}
-
-function getRandomNumber() {
-  return rando(9);
-}
-
-function getRandomSymbol() {
-  return rando('!@#$%^&*(){}[]=<>/,.');
-}
+var numberInArray = Math.floor(Math.random() * userChoice);
