@@ -1,7 +1,21 @@
 # Javascript-Password-Generator
 An application that generates a random password based on user-selected criteria. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code.
 
-In this project, we utilised Javascript in order to create a password based on a variation of Uppercase, lowercase, numbers and special characters.
+In this project, we utilised Javascript in order to create a password based on a variation of Uppercase, lowercase, numbers and special characters. One of the more challenging moments were to create functions to randomly access the array of characters based on the users prompted inputs.
+
+Link to code:
+A link to the Generator - https://recordsword.github.io/Javascript-Password-Generator/Index.html
+
+Screenshots: 
+https://recordsword.github.io/Javascript-Password-Generator/Snips/Front_page.jpg
+
+https://recordsword.github.io/Javascript-Password-Generator/Snips/Generate_BTN_activate.jpg
+
+https://recordsword.github.io/Javascript-Password-Generator/Snips/Prompts_in_program.jpg
+
+https://recordsword.github.io/Javascript-Password-Generator/Snips/Generated_password_alert.jpg
+
+https://recordsword.github.io/Javascript-Password-Generator/Snips/Generated_password.jpg
 
 Assignment Details
 GIVEN I need a new, secure password
